@@ -1,20 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "ResumeShift | AI Resume Tailoring",
-  description: "Adjust your resume and cover letter based on any job description automatically.",
+  title: "ResumeShift",
+  description: "AI-powered resume and job tracking platform",
 };
 
 export default function RootLayout({
@@ -23,11 +13,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
-      <body>{children}</body>
+    <html lang="en">
+      <body>
+        <nav style={{ padding: "16px", borderBottom: "1px solid #ddd", display: "flex", gap: "16px" }}>
+          <Link href="/">Home</Link>
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard/jobs">Jobs</Link>
+          <Link href="/dashboard/master-resume">Master Resume</Link>
+        </nav>
+        <main style={{ padding: "24px" }}>{children}</main>
+      </body>
     </html>
   );
 }
